@@ -1,5 +1,5 @@
 # webButton
-flask app with weird shit. done with the purpose of communicating between cellphone and pc (cellphone -> server -> pc)
+flask app with weird shit. done with the purpose of communication between cellphone and pc (cellphone -> server -> pc)
 <br><br>
 
 <h3>the papo eh o seguinte: </h3>
