@@ -1,7 +1,7 @@
 # webButton
 flask app with weird shit. done with the purpose of communication between cellphone and pc (cellphone -> server -> pc)
-<br><br>
 
+> server host: wayscript
 <h3>the papo eh o seguinte: </h3>
     <li>    o app_main.py é o app flask que fica rodando dentro do servidor, o static/ui.html é o html que o flask vai usar pra o index, os outros arquivos nao citados aqui sao so config do servidor</li>
     <li>    flask abre o html como objeto bsoup, a rota principal retorna o html como UI. </li>
