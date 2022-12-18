@@ -1,26 +1,45 @@
-import requests
-from bs4 import BeautifulSoup as soup
-from time import sleep
+from playwright.sync_api import sync_playwright
+import json 
 
 
 
-# WIP: this script should get the value sent in the website but it doesnt work yet
-get = requests.Session().get(
-    'https://glamorously-beautiful-iris-flat.wayscript.cloud/?', 
-    cookies={
-        '_wayscript_session': '1dd4f305-85bb-4d15-b16c-e9eba4319f33.L9-vO7Fqv1JfyhvmfEqIbKvLldA',
-        'AWSALB': 'XyurPRDkn9CW+AX9Yb5mfkFLH9RrNeNleuFiIwwSD9AAv154OLvqzUfhsiO00yAGejI3xITAoJou6rPN/uuMpnWX+1PlsKMkYJni3t8BmCtg4oTaf1VutzIq2Dy3',
-        'AWSALBAPP-0': 'AAAAAAAAAACIQ0h0H8DWDjn2WhLRO0wD+UjuMYTjCgQrhnJM2tbNU8+6ZfFt0XGM/7AcbDFUSctWt0Vn9eBqE/Kf46gVeOWu1n+pKJ2JWdQfWxY7zCc+YviJj4XDSTXkdYqHej/BDYJDOpI=',
-        'AWSALBAPP-1': '_remove_',
-        'AWSALBAPP-2': '_remove_',
-        'AWSALBAPP-3': '_remove_',
-        'AWSALBCORS': 'XyurPRDkn9CW+AX9Yb5mfkFLH9RrNeNleuFiIwwSD9AAv154OLvqzUfhsiO00yAGejI3xITAoJou6rPN/uuMpnWX+1PlsKMkYJni3t8BmCtg4oTaf1VutzIq2Dy3',
-        'ws_workspace_application_key_e912b38b-9e1d-4400-b2bb-d593c9e44c8a': '1f062a90-86ce-4860-826e-cfd456fdfee2'
-        })
-response = get.status_code
-print(response)
-if response == 200:
+def clear_cookies(cookies):
+    for item in cookies:
+        del item['sameSite']
+    json.dump(cookies, open('static/state.json', 'w'), indent=4)
 
-    html = soup(str(get.text), features='html.parser')
-    print(html)
+
+
+class Inspector():
+
+    def __init__(self, new_session):
+
+        cookies = json.load(open('static/state.json', 'r'))
+        if new_session:
+            clear_cookies(cookies) # only call it if the session is new 
+
+        playwright = sync_playwright().start() 
+        self.browser = playwright.webkit.launch(headless=True)
+        self.context = self.browser.new_context(java_script_enabled=False)
+        self.context.add_cookies(cookies)
+        self.page = self.context.new_page()
+        self.page.goto("https://glamorously-beautiful-iris-flat-dev.wayscript.cloud/")
+
+    def check_output(self):
+        #print(page.content())
+        self.page.reload()
+        return self.page.locator('textarea[id="output"]').text_content()
+
+    def loop(self, do_again: bool):
+        if do_again:
+            self.loop(True)
+
+    def close(self):
+        self.context.close()
+        self.browser.close()
+
+
+
+if __name__ == "__main__":
+    print(Inspector(new_session=False).check_output())
 
