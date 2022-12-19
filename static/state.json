@@ -1,7 +1,7 @@
 [
     {
         "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "expirationDate": 1671138818.303992,
+        "expirationDate": 1672006539.348455,
         "hostOnly": true,
         "httpOnly": false,
         "name": "AWSALBAPP-3",
@@ -14,19 +14,7 @@
     },
     {
         "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "hostOnly": true,
-        "httpOnly": true,
-        "name": "_wayscript_session",
-        "path": "/",
-        "sameSite": "lax",
-        "secure": true,
-        "session": true,
-        "storeId": null,
-        "value": "1dd4f305-85bb-4d15-b16c-e9eba4319f33.L9-vO7Fqv1JfyhvmfEqIbKvLldA"
-    },
-    {
-        "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "expirationDate": 1671138818.303899,
+        "expirationDate": 1672006539.348269,
         "hostOnly": true,
         "httpOnly": false,
         "name": "AWSALBAPP-0",
@@ -35,11 +23,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "AAAAAAAAAADXBHul0nTUF1xvuaT4iUYr6N3RI9yN7pm04Ge8KDmol9BnhfTAn9WGZx24Kdfs8jWTZTXg0JiiV3afMFnWf4dEJL/7vcIfmxq7mOySh2p9s/FW8/QQVRtcIG8bJqWr8fU0xnY="
+        "value": "AAAAAAAAAAA68G2SUdaQTNpYqzOGEls4a6VgwEGe6BPeVbwvJfMQOT5fx9wFW2dQlZR+ewqdVbk78vhr1cpQaTlmZ2mXMittXTA+pCGvoIM6hfif5pI6ub8NwNSXMayZgqE9eCqETLUgu9Q="
     },
     {
         "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "expirationDate": 1671138818.303744,
+        "expirationDate": 1672006531.347995,
         "hostOnly": true,
         "httpOnly": false,
         "name": "AWSALB",
@@ -48,11 +36,11 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "LLLQIlebX0aFeDu8Zp3WHvmXqJ5fHs4TYMyV8pjmHjREOJvX6027vtI/K99RbwgPjJpGvKs6Crb76Kh1YMK4oV2NkNtDuhdgYPoB9TAxlgEkVM41b+Dd0m4bY9zS"
+        "value": "EjQbv9fJVPWD3+fvAFSHwsOX9rpWmXkw+M5PRSqC/snQI/lYbawqMlEDL5CNj3kracbQxLGZ65dr2ksNVg6W9LeL4aJaOuu1jYqCfcZqcUR7Gr44Y0zi9be65ld2"
     },
     {
         "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "expirationDate": 1671138818.303932,
+        "expirationDate": 1672006539.348334,
         "hostOnly": true,
         "httpOnly": false,
         "name": "AWSALBAPP-1",
@@ -65,7 +53,7 @@
     },
     {
         "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "expirationDate": 1671138818.303963,
+        "expirationDate": 1672006539.348393,
         "hostOnly": true,
         "httpOnly": false,
         "name": "AWSALBAPP-2",
@@ -78,7 +66,7 @@
     },
     {
         "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "expirationDate": 1671138818.303828,
+        "expirationDate": 1672006531.348121,
         "hostOnly": true,
         "httpOnly": false,
         "name": "AWSALBCORS",
@@ -87,11 +75,11 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "LLLQIlebX0aFeDu8Zp3WHvmXqJ5fHs4TYMyV8pjmHjREOJvX6027vtI/K99RbwgPjJpGvKs6Crb76Kh1YMK4oV2NkNtDuhdgYPoB9TAxlgEkVM41b+Dd0m4bY9zS"
+        "value": "EjQbv9fJVPWD3+fvAFSHwsOX9rpWmXkw+M5PRSqC/snQI/lYbawqMlEDL5CNj3kracbQxLGZ65dr2ksNVg6W9LeL4aJaOuu1jYqCfcZqcUR7Gr44Y0zi9be65ld2"
     },
     {
         "domain": "glamorously-beautiful-iris-flat-dev.wayscript.cloud",
-        "expirationDate": 1671138818.304022,
+        "expirationDate": 1672006539.348518,
         "hostOnly": true,
         "httpOnly": true,
         "name": "ws_workspace_application_key_e912b38b-9e1d-4400-b2bb-d593c9e44c8a",
