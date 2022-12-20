@@ -1,4 +1,4 @@
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, Error
 import json 
 
 
@@ -28,18 +28,27 @@ class Inspector():
     def check_output(self):
         #print(page.content())
         self.page.reload()
-        return self.page.locator('textarea[id="output"]').text_content()
+        output = self.page.locator('textarea[id="output"]').text_content()
+        return output
+        
 
-    def loop(self, do_again: bool):
-        if do_again:
-            self.loop(True)
+    def loop(self):
+        
+        try:
+            print(self.check_output())
+            self.page.wait_for_timeout(100)
+            self.loop() 
 
-    def close(self):
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
+            self.close()
+        
+    def close(self):# aperta agora
         self.context.close()
         self.browser.close()
 
 
 
 if __name__ == "__main__":
-    print(Inspector(new_session=False).check_output())
+    Inspector(new_session=False).loop()
 
