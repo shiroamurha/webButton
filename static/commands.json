@@ -1,0 +1,7 @@
+{
+    "new_session": false,
+    "a": ["echo a", "C:/Riot Games/League of Legends/LeagueClient.exe"],
+    "b": ["echo b"],
+    "c": ["echo c"],
+    "d": ["echo d"]
+}
