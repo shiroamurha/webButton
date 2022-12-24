@@ -34,6 +34,8 @@ class Inspector():
             self.page.goto("https://glamorously-beautiful-iris-flat-dev.wayscript.cloud/")
         except:
             self.page.goto("https://glamorously-beautiful-iris-flat-dev.wayscript.cloud/")
+        finally:
+            self.saved_output = self.page.locator('textarea[id="output"]').text_content()
 
     def check_output(self):
         #print(page.content())
@@ -43,8 +45,9 @@ class Inspector():
         if self.saved_output != temp_output:
             self.output = temp_output 
 
-            for command in self.commands.get(self.output): # for each command line inside the list at key on commands dict  
-                os.system(command)
+            if self.commands.get(self.output) is not None:
+                for command in self.commands.get(self.output): # for each command line inside the list at key on commands dict  
+                    os.system(command)
 
             # assert self.saved_output == temp_output
         return self.output
