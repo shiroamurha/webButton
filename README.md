@@ -19,4 +19,4 @@ flask app with weird shit. done with the purpose of communication between cellph
     > "a": ['command1'], "b": ["command2", "command3"]
 
 <li>4- run (at the respective file path) <code>py inspector.py</code> to start the script to check the button output</li>
-<li>5- press the button you want to at <a href="glamorously-beautiful-iris-flat-dev.wayscript.cloud/?">this website</a> </li>
+<li>5- press the button you want to at <a href="https://glamorously-beautiful-iris-flat-dev.wayscript.cloud/?">this website</a> </li>
