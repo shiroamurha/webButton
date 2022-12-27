@@ -14,7 +14,7 @@ flask app with weird shit. done with the purpose of communication between cellph
 <h2>how to use: </h2>
 <li>1- download the repository</li>
 <li>2- you need to set up some dependencies, so at command prompt you must do <code>pip install playwright</code> and then <code>playwright install webkit</code>
-<li>3- in static/commands.json you can put as many commands you want (in batch language) assigned to the button you want following this pattern</li>
+<li>3- in static/commands.json you can put as many commands you want (in batch/shell language) assigned to the button you want following this pattern</li>
 
     > "a": ['command1'], "b": ["command2", "command3"]
 
