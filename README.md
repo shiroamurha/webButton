@@ -13,7 +13,7 @@ flask app with weird shit. done with the purpose of communication between cellph
     <li>    o inspector.py é o script que vai ficar checando o html do site pra receber o valor da output quando o botao for pressionado. o state.json é a sessao do servidor pra poder acessar o bagulho (macaquice do host)</li>
 <h2>how to use: </h2>
 <li>1- download the repository</li>
-<li>2- you need to set up some dependencies, so at command prompt you must do: <code>pip install playwright</code> and then <code>playwright install webkit</code>
+<li>2- you need to set up some dependencies, so at command prompt you must do <code>pip install playwright</code> and then <code>playwright install webkit</code>
 <li>3- in static/commands.json you can put as many commands you want (in batch language) assigned to the button you want following this pattern</li>
 
     > "a": ['command1'], "b": ["command2", "command3"]
