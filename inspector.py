@@ -17,16 +17,19 @@ class Inspector():
 
         
         self.commands = json.load(open('static/commands.json', 'r'))
-        cookies = json.load(open('static/state.json', 'r'))
+        self.cookies = json.load(open('static/state.json', 'r'))
         self.saved_output = ' '
         self.output = ' '
         if self.commands.get('new_session'): # key value -> true/false
-            clear_cookies(cookies) # only call it if the session is new 
+            clear_cookies(self.cookies) # only call it if the session is new 
+
+
+    def start(self):
 
         playwright = sync_playwright().start() 
         self.browser = playwright.webkit.launch(headless=True)
         self.context = self.browser.new_context(java_script_enabled=False)
-        self.context.add_cookies(cookies)
+        self.context.add_cookies(self.cookies)
         self.page = self.context.new_page()
 
         # sometimes playwright just cant access for no reason
@@ -40,16 +43,19 @@ class Inspector():
     def check_output(self):
         #print(page.content())
         self.page.reload()
+        self.output_raised = False
         temp_output = self.page.locator('textarea[id="output"]').text_content()
         
-        if self.saved_output != temp_output:
-            self.output = temp_output 
+        # if self.saved_output is not temp_output:
+        self.output = temp_output 
+        
+        
+        if self.commands.get(self.output) != '' and self.commands.get(self.output) != ' ' and self.commands.get(self.output) is not None:
+            self.output_raised = True
+            for command in self.commands.get(self.output): # for each command line inside the list at key on commands dict  
+                os.system(command)
 
-            if self.commands.get(self.output) is not None:
-                for command in self.commands.get(self.output): # for each command line inside the list at key on commands dict  
-                    os.system(command)
-
-            # assert self.saved_output == temp_output
+        # assert self.saved_output == temp_output
         return self.output
         
 
@@ -58,21 +64,37 @@ class Inspector():
         try:
             self.saved_output = self.check_output()
             # self.page.wait_for_timeout(100)
-            self.loop() 
+            if self.output_raised:
+                return self.output
 
-        except KeyboardInterrupt:
-            raise '' 
-            try:
-                self.close()
-            except:
-                pass
-        
+        except (KeyboardInterrupt, ValueError):
+            pass
+    
+    def get_commands(self):
+        return self.commands
+    
+    def update_commands(self, commands):
+        self.commands = commands
+        json.dump(commands, open('static/commands.json', 'w'), indent=4)
+
     def close(self):# aperta agora
-        self.context.close()
-        self.browser.close()
+
+        try:
+            self.context.close()
+        except:
+            pass
+
+        try:
+            self.browser.close()
+        except:
+            pass
 
 
-
+i = 0
 if __name__ == "__main__":
-    Inspector().loop()
+    a = Inspector()
+    a.start()
+    while i==0:
+        print(a.loop())
+        i = int(input(' - '))
 
