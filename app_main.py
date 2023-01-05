@@ -1,57 +1,53 @@
 from flask import Flask
+from time import sleep
 from bs4 import BeautifulSoup as soup
 
 
 
-# opening UI file as a beautifulsoup obj
-html = soup(open('.\\static\\ui.html', 'r', encoding='utf-8').read(), features='html.parser')
+html = soup(open('static/ui.html', 'r', encoding='utf-8').read(), features='html.parser')
 app = Flask(__name__)
 
 def output(button_key):
-    # finds <textarea id="output"> 
+    # finds <textarea id="output"> and changes its value according to the pressed button 
     output_tag = html.find('textarea', attrs={'id': 'output'})
-
-    # changes output tag value to the according pressed key
     output_tag.string.replace_with(button_key)
-
-    # prints the entire tag already changed for debugging
     print(f'    {output_tag}')
+    sleep(2)
+    output_tag.string.replace_with(' ')
 
 
 
 @app.route('/', methods=['GET','POST'])
 def ui():
-    # returning str of html obj in the UI because flask doesnt accept anything else
     return str(html)
 
 @app.route('/a')
 def a():
-    # button A onclick function 
+    #playsound(f'{getcwd()}/A.wav') # actual path + sound file name
     output('a')
 
-    return ('') # a.k.a. return 0
+    return ('')
 
 @app.route('/b')
 def b():
-    # button B onclick function 
+    #playsound(f'{getcwd()}/B.wav')
     output('b')
 
-    return ('') # a.k.a. return 0
+    return ('')
 
 @app.route('/c')
 def c():
-    # button C onclick function 
+    #playsound(f'{getcwd()}/C.wav')
     output('c')
 
-    return ('') # a.k.a. return 0
+    return ('')
 
 @app.route('/d')
 def d():
-    # button D onclick function 
     output('d')
-
-    return ('') # a.k.a. return 0
+    
+    return ('')
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run()
