@@ -24,11 +24,10 @@ class Inspector():
             clear_cookies(self.cookies) # only call it if the session is new 
 
 
-            
     def start(self):
 
-        playwright = sync_playwright().start() 
-        self.browser = playwright.webkit.launch(headless=True)
+        self.playwright = sync_playwright().start() 
+        self.browser = self.playwright.webkit.launch(headless=True)
         self.context = self.browser.new_context(java_script_enabled=False)
         self.context.add_cookies(self.cookies)
         self.page = self.context.new_page()
@@ -71,21 +70,19 @@ class Inspector():
         except (KeyboardInterrupt, ValueError):
             pass
     
-    
-    
     def get_commands(self):
         return self.commands
-    
-    
     
     def update_commands(self, commands):
         self.commands = commands
         json.dump(commands, open('static/commands.json', 'w'), indent=4)
 
-        
-        
     def close(self):# aperta agora
 
+        try:
+            self.page.close()
+        except:
+            pass
         try:
             self.context.close()
         except:
@@ -95,10 +92,13 @@ class Inspector():
             self.browser.close()
         except:
             pass
+        
+        try:
+            self.playwright.dispose()
+        except:
+            pass
 
 
-        
-        
 i = 0
 if __name__ == "__main__":
     a = Inspector()
