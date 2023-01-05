@@ -200,7 +200,7 @@ def event_block(event):
         case 'disconnect':
             window['disconnect'].update(disabled=True)
             window['connect'].update(disabled=False)
-            window['running'].update('Disconnected...')
+            window['running'].update('Disconnected   ')
             is_running = False
             
         
