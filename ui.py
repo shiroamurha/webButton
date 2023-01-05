@@ -1,7 +1,7 @@
 import PySimpleGUI as ui
 import inspector 
 from time import sleep
-        
+from datetime import datetime as date
         
 
 def clock_tick():
@@ -14,12 +14,13 @@ commands_dict = inspect.get_commands()
 frame_running = [
     ui.Frame('', [
         [
-            ui.Text(f'Running... ', font='arial 12 bold', background_color='#23272a'),
-            ui.Sizer(120, 0),
+            ui.Text('Running...     ', key='running', font='arial 12 bold', background_color='#23272a'),
+            #ui.Column([], size=(80, 1)),
+            ui.Push(background_color='#23272a'),
             ui.Button('•', key='tick', size=(1,1))
         ]
     
-    ], background_color='#23272a', vertical_alignment='t')
+    ], background_color='#23272a', size=(250,35), vertical_alignment='t')
 ]
 
 
@@ -173,6 +174,7 @@ layout = [
 
 
 def event_block(event):
+    global is_running
     global values
     match event:
 
@@ -190,18 +192,21 @@ def event_block(event):
         case 'connect':
             window['disconnect'].update(disabled=False)
             window['connect'].update(disabled=True)
-            inspect.start()
-        
+            #inspect.start()
+            window['running'].update('Running...     ')
+            is_running = True
+
         case 'disconnect':
             window['disconnect'].update(disabled=True)
             window['connect'].update(disabled=False)
+            window['running'].update('Disconnected...')
             is_running = False
-            inspect.close()
+            #inspect.close()
         
 window = ui.Window('Web Button Inspector', layout, background_color='#23272a')
 
-is_running = False
-#inspect.start()
+is_running = True
+inspect.start()
 
 while True:
 
@@ -218,13 +223,13 @@ while True:
     if is_running:
         if output_value is not None:
 
-            if len(window['output_frame'].get()) == 0 or len(window['output_frame'].get())>66:
+            if len(window['output_frame'].get()) == 0 or len(window['output_frame'].get())>174:
 
-                window['output_frame'].update(f'Pressed: {output_value}')
+                window['output_frame'].update(f'Pressed: {output_value.upper()}     -     at [{str(date.now())[11:19]}]')
 
             else:
 
-                window['output_frame'].update(f'{window["output_frame"].get()}\nPressed: {output_value}')
+                window['output_frame'].update(f'{window["output_frame"].get()}\nPressed: {output_value.upper()}     -     at [{str(date.now())[11:19]}]')
 
 
 
