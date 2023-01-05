@@ -5,7 +5,7 @@ from datetime import datetime as date
         
 
 def clock_tick():
-    sleep(3)
+    sleep(2)
 
 
 inspect = inspector.Inspector()
@@ -195,30 +195,35 @@ def event_block(event):
             #inspect.start()
             window['running'].update('Running...     ')
             is_running = True
+            
 
         case 'disconnect':
             window['disconnect'].update(disabled=True)
             window['connect'].update(disabled=False)
             window['running'].update('Disconnected...')
             is_running = False
-            #inspect.close()
+            
         
 window = ui.Window('Web Button Inspector', layout, background_color='#23272a')
 
 is_running = True
+
 inspect.start()
 
 while True:
 
-    window.perform_long_operation(clock_tick, 'tick')
-
     if is_running:
-        output_value = inspect.loop()
+        window.perform_long_operation(clock_tick, 'tick')
 
     event, values = window.read()
     event_block(event)
+    
     if event == ui.WIN_CLOSED:
+        inspect.close()
         break
+    
+    if is_running:
+        output_value = inspect.loop()
 
     if is_running:
         if output_value is not None:
@@ -232,7 +237,5 @@ while True:
                 window['output_frame'].update(f'{window["output_frame"].get()}\nPressed: {output_value.upper()}     -     at [{str(date.now())[11:19]}]')
 
 
-
-    
 
 window.close()
