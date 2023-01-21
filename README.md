@@ -11,7 +11,8 @@ flask app with weird shit. done with the purpose of communication between cellph
     <li>    depois que uma funçao de botao eh chamada, o html da UI é atualizado pra o html modificado com a output nova. </li>
     <li>    a tag textarea#output é invisivel na UI, é oculta so pra ser encontrada no web scrapping que vai puxar apenas o html e pegar o valor da output.</li>
     <li>    o inspector.py é o script que vai ficar checando o html do site pra receber o valor da output quando o botao for pressionado. o state.json é a sessao do servidor pra poder acessar o bagulho (macaquice do host)</li>
-<h2>how to use: </h2>
+    <li>    o ui.py integra o objeto de inspetor com uma UI feita em pysimplegui, tem espaços pra por os comandos, tem funções pra ligar e desligar o webkit, alem de mostrar em uma tela de output os botoes que foram apertados lá no flask app </li>
+<h2>how to use: # DEPRECIATED #</h2>
 <li>1- download the repository</li>
 <li>2- you need to set up some dependencies, so at command prompt you must do <code>pip install PySimpleGUI</code>, <code>pip install playwright</code> and then <code>playwright install webkit</code>
 <li>3- in static/commands.json you can put as many commands you want (in batch/shell language) assigned to the button you want following this pattern</li>
